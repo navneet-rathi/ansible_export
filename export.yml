@@ -5,6 +5,9 @@
   tasks:
     - name: Export all assets
       awx.awx.export:
+        controller_host: 192.168.1.19
+        controller_username: admin
+        controller_password: primod123
         all: True
       register: export_output
 
