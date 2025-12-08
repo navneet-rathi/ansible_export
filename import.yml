@@ -10,8 +10,6 @@
         controller_password: primod123
         validate_certs: false
         assets: "{{ lookup('file', '/home/nrathi/aap_export_20251208T164221.json') | from_json() }}"
-      delegate_to: ctrl
-      run_once: true
       
     - name: Display export completion message
       debug:
