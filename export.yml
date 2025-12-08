@@ -8,6 +8,7 @@
         controller_host: 192.168.1.19
         controller_username: admin
         controller_password: primod123
+        validate_certs: false
         all: True
       register: export_output
 
