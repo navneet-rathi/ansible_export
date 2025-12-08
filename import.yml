@@ -3,6 +3,14 @@
   hosts: ctrl
   gather_facts: true
   tasks:
+    - name: Display start message
+      debug:
+        msg: "Starting AAP configuration Import process."
+
+    - name: command to import all assets
+      command: >
+        ls -alh    
+        
     - name: Export all assets
       awx.awx.import:
         controller_host: 192.168.64.67:8443
