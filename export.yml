@@ -3,24 +3,15 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Export all AAP configuration
-      register: export_result
+    - name: Export all assets
       awx.awx.export:
-        controller_host: "192.168.1.19"
-        controller_username: admin
-        controller_password: primod123
-        export_dir: "./exported_data"
-        include:
-          - organizations
-          - inventories
-          - projects
-          - job_templates
-          - users
+        all: True
+      register: export_output
+
+    - name: Import all assets from our export
+      import:
+        assets: "{{ export_output.assets }}"
       
     - name: Display export completion message
       debug:
         msg: "AAP configuration export completed successfully."
-    
-    - name: --- IGNORE ---
-      debug:
-        msg: "{{ export_result }}"
