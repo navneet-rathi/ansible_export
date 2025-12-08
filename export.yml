@@ -24,7 +24,7 @@
 
     - name: Save export to file
       ansible.builtin.copy:
-        content: "{{ export_output.export_data }}"
+        content: "{{ export_output.assets }}"
         dest: "./aap_export_{{ ansible_date_time.iso8601_basic_short }}.json"
       delegate_to: ctrl
       run_once: true
