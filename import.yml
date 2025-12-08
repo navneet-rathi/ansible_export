@@ -11,14 +11,14 @@
       command: >
         ls -alh    
       delegate_to: localhost
-        
+
     - name: Export all assets
       awx.awx.import:
         controller_host: 192.168.64.67:8443
         controller_username: admin
         controller_password: primod123
         validate_certs: false
-        assets: "{{ lookup('file', 'aap_export_20251208T164221.json') | from_json() }}"
+        assets: "{{ lookup('file', 'org.json') | from_json() }}"
       delegate_to: localhost
 
     - name: Display export completion message
