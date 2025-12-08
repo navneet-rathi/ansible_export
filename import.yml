@@ -9,9 +9,9 @@
         controller_username: admin
         controller_password: primod123
         validate_certs: false
-        assets: "{{ lookup('file', '/home/nrathi/aap_export_20251208T164221.json') | from_json() }}"
+        assets: "{{ lookup('file', 'aap_export_20251208T164221.json') | from_json() }}"
       delegate_to: localhost
-      
+
     - name: Display export completion message
       debug:
         msg: "AAP configuration Import completed successfully."
