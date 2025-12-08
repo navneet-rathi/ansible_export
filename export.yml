@@ -1,6 +1,6 @@
 ---
 - name: export all aap config
-  hosts: localhost
+  hosts: ctrl
   gather_facts: false
   tasks:
     - name: Export all assets
@@ -11,6 +11,8 @@
         validate_certs: false
         all: True
       register: export_output
+      delegate_to: localhost
+      run_once: true
 
     - name: all assets from our export
       ansible.builtin.debug:
@@ -19,3 +21,10 @@
     - name: Display export completion message
       debug:
         msg: "AAP configuration export completed successfully."
+
+    - name: Save export to file
+      ansible.builtin.copy:
+        content: "{{ export_output.export_data }}"
+        dest: "./aap_export_{{ ansible_date_time.iso8601_basic_short }}.json"
+      delegate_to: ctrl
+      run_once: true
