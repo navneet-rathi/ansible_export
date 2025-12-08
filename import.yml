@@ -4,27 +4,16 @@
   gather_facts: true
   tasks:
     - name: Export all assets
-      awx.awx.export:
-        controller_host: 192.168.1.19
+      awx.awx.import:
+        controller_host: 192.168.64.67:8443
         controller_username: admin
         controller_password: primod123
         validate_certs: false
-        all: True
-      register: export_output
-      delegate_to: localhost
+        assets: "{{ lookup('file', '/home/nrathi/aap_export_20251208T164221.json') | from_json() }}"
+      delegate_to: ctrl
       run_once: true
-
-    - name: all assets from our export
-      ansible.builtin.debug:
-        var: export_output
       
     - name: Display export completion message
       debug:
-        msg: "AAP configuration export completed successfully."
+        msg: "AAP configuration Import completed successfully."
 
-    - name: Save export to file
-      ansible.builtin.copy:
-        content: "{{ export_output.assets }}"
-        dest: "/home/nrathi/aap_export_{{ ansible_date_time.iso8601_basic_short }}.json"
-      delegate_to: ctrl
-      run_once: true
