@@ -10,6 +10,7 @@
     - name: command to import all assets
       command: >
         ls -alh    
+      delegate_to: localhost
         
     - name: Export all assets
       awx.awx.import:
