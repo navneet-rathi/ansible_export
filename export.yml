@@ -8,9 +8,9 @@
         all: True
       register: export_output
 
-    - name: Import all assets from our export
-      import:
-        assets: "{{ export_output.assets }}"
+    - name:  all assets from our export
+      ansible.builti.debug:
+        var: export_output
       
     - name: Display export completion message
       debug:
