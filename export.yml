@@ -1,7 +1,7 @@
 ---
 - name: export all aap config
   hosts: ctrl
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Export all assets
       awx.awx.export:
