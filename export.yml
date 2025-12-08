@@ -8,8 +8,8 @@
         all: True
       register: export_output
 
-    - name:  all assets from our export
-      ansible.builti.debug:
+    - name: all assets from our export
+      ansible.builtin.debug:
         var: export_output
       
     - name: Display export completion message
