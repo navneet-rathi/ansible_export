@@ -1,0 +1,6 @@
+---
+- name: Run playbook to export organizations
+  import_playbook: configify.aapconfig.aap_audit_organizations.yml
+
+- name: Run playbook to export users
+  import_playbook: configify.aapconfig.aap_audit_users.yml
